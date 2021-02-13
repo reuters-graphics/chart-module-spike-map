@@ -1,0 +1,13 @@
+@import '~@reuters-graphics/style-theme-eisbaer/scss/main';
+@import '~@reuters-graphics/style-color/scss/thematic/brand';
+
+$SpikeMap-container: '#spike-map-container' !default;
+
+#{$SpikeMap-container} {
+  /* Write your chart styles here */
+  g.voronoi {
+    path {
+      cursor: crosshair;
+    }
+  }
+}
