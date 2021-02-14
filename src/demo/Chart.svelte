@@ -61,7 +61,10 @@ Follow the notes below! -->
           .map((d) => d.isoNumeric.padStart(3, '0'))
           .includes(feature.id),
       fill: tooltipCountry
-        ? (d) => (client.getCountry(parseInt(d.id).toString()).name === tooltipCountry ? '#bbb' : '#ddd')
+        ? (d) =>
+            client.getCountry(parseInt(d.id).toString()).name === tooltipCountry
+              ? '#bbb'
+              : '#ddd'
         : '#ddd',
     },
     spikes: {
