@@ -1,5 +1,5 @@
 {
-  "name": "@reuters-graphics/spike-map",
+  "name": "@reuters-graphics/chart-module-spike-map",
   "version": "0.0.1",
   "main": "dist/index.js",
   "module": "src/js/index.js",

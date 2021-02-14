@@ -31,18 +31,26 @@ Follow the notes below! -->
   const tallSpikes = [20, 80];
   const shortSpikes = [10, 30];
   let spikeRange = shortSpikes;
+
+  const fatBase = 16;
+  const skinyBase = 8;
+  let base = skinyBase;
+  
   const interactiveVoronoi = {
     mouseover: (e, d, selections) => {
       tooltipCountry = d.name;
       tooltipPop = d.dataProfile.population.d.toLocaleString('en');
     },
-    // mouseout: (e, d, selections) => {
-    //   tooltipCountry = null;
-    //   tooltipPop = null;
-    // }
   };
   const staticVoronoi = { mouseover: (d) => d, mouseout: (d) => d };
   let voronoi = staticVoronoi;
+
+  const spikeClearFill = 'transparent';
+  const spikeClearStroke = '#333';
+  const spikeColourFill = '#FD9162';
+  const spikeColourStroke = '#E73B41';
+  let spikeFill = spikeClearFill;
+  let spikeStroke = spikeClearStroke;
   // ...
 
   // 🎈 Tie your custom props back together into one chartProps object.
@@ -60,7 +68,9 @@ Follow the notes below! -->
       getFeatureId: (d) => d.isoNumeric.padStart(3, '0'),
       getValue: (d) => d.dataProfile.population.d,
       range: spikeRange,
-      base: 8,
+      base,
+      fill: spikeFill,
+      stroke: spikeStroke,
     },
     voronoi,
   };
@@ -74,10 +84,16 @@ Follow the notes below! -->
       .data(countries) // Pass your chartData
       .props(chartProps) // Pass your chartProps
       .draw();
+    
+    chart.selection().select('svg')
+      .on('mouseleave', () => {
+        tooltipCountry = null;
+        tooltipPop = null;
+      });
   });
 </script>
 
-<div id="spike-map-container" bind:this={chartContainer}>
+<div id="spike-map-container" class:interactive={tooltipCountry} bind:this={chartContainer}>
   {#if tooltipCountry}
     <div class="tooltip">
       <h4>{tooltipCountry}</h4>
@@ -100,8 +116,19 @@ Follow the notes below! -->
   >
   <button
     on:click={() => {
+      spikeStroke = spikeStroke === spikeClearStroke ? spikeColourStroke : spikeClearStroke;
+      spikeFill = spikeFill === spikeClearFill ? spikeColourFill : spikeClearFill;
+    }}>{spikeStroke === spikeClearStroke ? 'Colour' : 'Black'}</button
+  >
+  <button
+    on:click={() => {
       spikeRange = spikeRange === tallSpikes ? shortSpikes : tallSpikes;
     }}>{spikeRange === tallSpikes ? 'Shorter' : 'Taller'}</button
+  >
+  <button
+    on:click={() => {
+      base = base === skinyBase ? fatBase : skinyBase;
+    }}>{base === skinyBase ? 'Fat' : 'Skinny'}</button
   >
   <button
     on:click={() => {
@@ -116,7 +143,7 @@ Follow the notes below! -->
 <Explorer title="Props" data={chart.props()} />
 
 <!-- 🖌️ Style your demo page here -->
-<style lang="scss">
+<style lang="scss" global>
   .chart-options {
     button {
       padding: 5px 15px;
@@ -124,6 +151,21 @@ Follow the notes below! -->
   }
   #spike-map-container {
     position: relative;
+
+    g.voronoi {
+      path {
+        cursor: default;
+      }
+    }
+
+    &.interactive {
+      g.voronoi {
+        path {
+          cursor: crosshair;
+        }
+      }
+    }
+
     .tooltip {
       position: absolute;
       top: 0;
@@ -132,7 +174,7 @@ Follow the notes below! -->
       background-color: rgba(255, 255, 255, 0.4);
       h4 {
         font-size: 14px;
-        margin: 0;
+        margin: 0 0 -5px;
       }
       p {
         font-family: monospace;
