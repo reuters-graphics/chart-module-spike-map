@@ -1936,7 +1936,10 @@ var SpikeMap = /*#__PURE__*/function () {
   }, {
     key: "geoData",
     value: function geoData(topojson) {
-      if (!topojson && !this._geoData) throw new Error('Must pass topojson to chart.geoData()');
+      if (!topojson && !this._geoData) {
+        throw new Error('Must pass topojson to chart.geoData()');
+      }
+
       if (!topojson) return this._geoData;
       this._geoData = topojson;
       return this;
@@ -1944,7 +1947,10 @@ var SpikeMap = /*#__PURE__*/function () {
   }, {
     key: "data",
     value: function data(newData) {
-      if (!newData && !this._data) throw new Error('Must pass data to chart.data()');
+      if (!newData && !this._data) {
+        throw new Error('Must pass data to chart.data()');
+      }
+
       if (!newData) return this._data;
       this._data = newData;
       return this;
@@ -1986,8 +1992,10 @@ var SpikeMap = /*#__PURE__*/function () {
       if (!d3Geo__namespace[props.projection]) props.projection = 'geoNaturalEarth1';
       var projection = d3Geo__namespace[props.projection]();
       var geoFeatures = feature(geoData, props.geometries.getObjects(geoData.objects));
-      console.log(geoFeatures);
-      if (props.geometries.filter) geoFeatures.features = geoFeatures.features.filter(props.geometries.filter);
+
+      if (props.geometries.filter) {
+        geoFeatures.features = geoFeatures.features.filter(props.geometries.filter);
+      }
 
       if (props.clipExtent) {
         projection.fitSize([width, height], makeClipBox(props.clipExtent));

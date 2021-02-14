@@ -13,7 +13,7 @@
       "imports": []
     },
     "_snowpack/pkg/svelte/internal.js": {
-      "bytes": 472,
+      "bytes": 491,
       "imports": [
         {
           "path": "_snowpack/pkg/common/index-24c67e07.js",
@@ -77,7 +77,7 @@
       ]
     },
     "dist/demo/Chart.svelte.css": {
-      "bytes": 478,
+      "bytes": 451,
       "imports": []
     },
     "_snowpack/pkg/svelte.js": {
@@ -294,7 +294,7 @@
       ]
     },
     "dist/js/index.js": {
-      "bytes": 8178,
+      "bytes": 8172,
       "imports": [
         {
           "path": "_snowpack/pkg/d3-transition.js",
@@ -360,7 +360,7 @@
       "imports": []
     },
     "dist/demo/Chart.svelte.js": {
-      "bytes": 9308,
+      "bytes": 10997,
       "imports": [
         {
           "path": "dist/demo/Chart.svelte.css",
@@ -553,7 +553,7 @@
           "bytesInOutput": 14462
         },
         "dist/js/index.js": {
-          "bytesInOutput": 3762
+          "bytesInOutput": 3747
         },
         "_snowpack/pkg/@reuters-graphics/graphics-atlas-client.js": {
           "bytesInOutput": 212484
@@ -562,7 +562,7 @@
           "bytesInOutput": 105979
         },
         "dist/demo/Chart.svelte.js": {
-          "bytesInOutput": 3083
+          "bytesInOutput": 3505
         },
         "dist/demo/App/App.svelte.js": {
           "bytesInOutput": 900
@@ -571,7 +571,7 @@
           "bytesInOutput": 44
         }
       },
-      "bytes": 1620990
+      "bytes": 1621397
     },
     "../~~bundle~~/dist/demo/App/index.css": {
       "imports": [],
@@ -586,7 +586,7 @@
           "bytesInOutput": 188
         },
         "dist/demo/Chart.svelte.css": {
-          "bytesInOutput": 475
+          "bytesInOutput": 448
         },
         "dist/demo/App/Docs.svelte.css": {
           "bytesInOutput": 330
@@ -595,7 +595,7 @@
           "bytesInOutput": 226
         }
       },
-      "bytes": 2029
+      "bytes": 2002
     }
   }
 }

@@ -35,7 +35,7 @@ Follow the notes below! -->
   const fatBase = 16;
   const skinyBase = 8;
   let base = skinyBase;
-  
+
   const interactiveVoronoi = {
     mouseover: (e, d, selections) => {
       tooltipCountry = d.name;
@@ -84,8 +84,10 @@ Follow the notes below! -->
       .data(countries) // Pass your chartData
       .props(chartProps) // Pass your chartProps
       .draw();
-    
-    chart.selection().select('svg')
+
+    chart
+      .selection()
+      .select('svg')
       .on('mouseleave', () => {
         tooltipCountry = null;
         tooltipPop = null;
@@ -93,7 +95,11 @@ Follow the notes below! -->
   });
 </script>
 
-<div id="spike-map-container" class:interactive={tooltipCountry} bind:this={chartContainer}>
+<div
+  id="spike-map-container"
+  class:interactive={tooltipCountry}
+  bind:this={chartContainer}
+>
   {#if tooltipCountry}
     <div class="tooltip">
       <h4>{tooltipCountry}</h4>
@@ -116,8 +122,10 @@ Follow the notes below! -->
   >
   <button
     on:click={() => {
-      spikeStroke = spikeStroke === spikeClearStroke ? spikeColourStroke : spikeClearStroke;
-      spikeFill = spikeFill === spikeClearFill ? spikeColourFill : spikeClearFill;
+      spikeStroke =
+        spikeStroke === spikeClearStroke ? spikeColourStroke : spikeClearStroke;
+      spikeFill =
+        spikeFill === spikeClearFill ? spikeColourFill : spikeClearFill;
     }}>{spikeStroke === spikeClearStroke ? 'Colour' : 'Black'}</button
   >
   <button
