@@ -199,39 +199,52 @@
       "bytes": 13854,
       "imports": []
     },
-    "_snowpack/pkg/common/index-2c098da7.js": {
-      "bytes": 23886,
+    "_snowpack/pkg/common/index-42b1c642.js": {
+      "bytes": 25003,
       "imports": []
     },
     "_snowpack/pkg/d3-transition.js": {
-      "bytes": 34401,
+      "bytes": 34508,
       "imports": [
         {
           "path": "_snowpack/pkg/common/string-5bc924f5.js",
           "kind": "import-statement"
         },
         {
-          "path": "_snowpack/pkg/common/index-2c098da7.js",
+          "path": "_snowpack/pkg/common/index-42b1c642.js",
           "kind": "import-statement"
         }
       ]
     },
     "_snowpack/pkg/d3-selection.js": {
-      "bytes": 2473,
+      "bytes": 2449,
       "imports": [
         {
-          "path": "_snowpack/pkg/common/index-2c098da7.js",
+          "path": "_snowpack/pkg/common/index-42b1c642.js",
           "kind": "import-statement"
         },
         {
-          "path": "_snowpack/pkg/common/index-2c098da7.js",
+          "path": "_snowpack/pkg/common/index-42b1c642.js",
           "kind": "import-statement"
         }
       ]
     },
-    "_snowpack/pkg/d3-geo.js": {
-      "bytes": 89030,
+    "_snowpack/pkg/common/stereographic-f28c5c74.js": {
+      "bytes": 51013,
       "imports": []
+    },
+    "_snowpack/pkg/d3-geo.js": {
+      "bytes": 39228,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/common/stereographic-f28c5c74.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/common/stereographic-f28c5c74.js",
+          "kind": "import-statement"
+        }
+      ]
     },
     "_snowpack/pkg/topojson-client.js": {
       "bytes": 14030,
@@ -241,42 +254,42 @@
       "bytes": 2961,
       "imports": []
     },
-    "_snowpack/pkg/d3-array.js": {
-      "bytes": 728,
+    "_snowpack/pkg/common/extent-64083604.js": {
+      "bytes": 733,
       "imports": []
     },
+    "_snowpack/pkg/d3-array.js": {
+      "bytes": 59,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/common/extent-64083604.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
     "_snowpack/pkg/d3-geo-voronoi.js": {
-      "bytes": 126497,
-      "imports": []
+      "bytes": 59810,
+      "imports": [
+        {
+          "path": "_snowpack/pkg/common/extent-64083604.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "_snowpack/pkg/common/stereographic-f28c5c74.js",
+          "kind": "import-statement"
+        }
+      ]
     },
     "dist/js/utils/makeClipBox.js": {
       "bytes": 763,
       "imports": []
     },
-    "_snowpack/pkg/common/identity-9587ea18.js": {
-      "bytes": 34984,
-      "imports": [
-        {
-          "path": "_snowpack/pkg/common/_commonjsHelpers-eb5a497e.js",
-          "kind": "import-statement"
-        }
-      ]
-    },
-    "_snowpack/pkg/lodash/merge.js": {
-      "bytes": 24341,
-      "imports": [
-        {
-          "path": "_snowpack/pkg/common/identity-9587ea18.js",
-          "kind": "import-statement"
-        },
-        {
-          "path": "_snowpack/pkg/common/_commonjsHelpers-eb5a497e.js",
-          "kind": "import-statement"
-        }
-      ]
+    "_snowpack/pkg/lodash-es.js": {
+      "bytes": 55045,
+      "imports": []
     },
     "_snowpack/pkg/d3-scale.js": {
-      "bytes": 22395,
+      "bytes": 22524,
       "imports": [
         {
           "path": "_snowpack/pkg/common/string-5bc924f5.js",
@@ -294,7 +307,7 @@
       ]
     },
     "dist/js/index.js": {
-      "bytes": 8172,
+      "bytes": 8173,
       "imports": [
         {
           "path": "_snowpack/pkg/d3-transition.js",
@@ -329,7 +342,7 @@
           "kind": "import-statement"
         },
         {
-          "path": "_snowpack/pkg/lodash/merge.js",
+          "path": "_snowpack/pkg/lodash-es.js",
           "kind": "import-statement"
         },
         {
@@ -343,14 +356,10 @@
       ]
     },
     "_snowpack/pkg/@reuters-graphics/graphics-atlas-client.js": {
-      "bytes": 281751,
+      "bytes": 315884,
       "imports": [
         {
           "path": "_snowpack/pkg/common/_commonjsHelpers-eb5a497e.js",
-          "kind": "import-statement"
-        },
-        {
-          "path": "_snowpack/pkg/common/identity-9587ea18.js",
           "kind": "import-statement"
         }
       ]
@@ -447,6 +456,9 @@
         "default"
       ],
       "inputs": {
+        "_snowpack/pkg/lodash-es.js": {
+          "bytesInOutput": 11223
+        },
         "dist/demo/App/App.svelte.css": {
           "bytesInOutput": 0
         },
@@ -487,10 +499,10 @@
           "bytesInOutput": 381
         },
         "_snowpack/pkg/svelte-highlight.js": {
-          "bytesInOutput": 14713
+          "bytesInOutput": 14719
         },
         "_snowpack/pkg/svelte-highlight/languages.js": {
-          "bytesInOutput": 876985
+          "bytesInOutput": 876930
         },
         "_snowpack/pkg/svelte-highlight/styles.js": {
           "bytesInOutput": 109889
@@ -513,17 +525,20 @@
         "_snowpack/pkg/common/string-5bc924f5.js": {
           "bytesInOutput": 8243
         },
-        "_snowpack/pkg/common/index-2c098da7.js": {
-          "bytesInOutput": 12025
+        "_snowpack/pkg/common/index-42b1c642.js": {
+          "bytesInOutput": 12105
         },
         "_snowpack/pkg/d3-transition.js": {
-          "bytesInOutput": 15680
+          "bytesInOutput": 15742
         },
         "_snowpack/pkg/d3-selection.js": {
           "bytesInOutput": 463
         },
         "_snowpack/pkg/d3-geo.js": {
-          "bytesInOutput": 37141
+          "bytesInOutput": 18121
+        },
+        "_snowpack/pkg/common/stereographic-f28c5c74.js": {
+          "bytesInOutput": 19033
         },
         "_snowpack/pkg/topojson-client.js": {
           "bytesInOutput": 1519
@@ -531,38 +546,35 @@
         "_snowpack/pkg/d3-appendselect.js": {
           "bytesInOutput": 919
         },
-        "_snowpack/pkg/d3-array.js": {
+        "_snowpack/pkg/common/extent-64083604.js": {
           "bytesInOutput": 228
         },
+        "_snowpack/pkg/d3-array.js": {
+          "bytesInOutput": 0
+        },
         "_snowpack/pkg/d3-geo-voronoi.js": {
-          "bytesInOutput": 58967
+          "bytesInOutput": 25503
         },
         "dist/js/utils/makeClipBox.js": {
           "bytesInOutput": 238
         },
-        "_snowpack/pkg/common/identity-9587ea18.js": {
-          "bytesInOutput": 7538
-        },
-        "_snowpack/pkg/lodash/merge.js": {
-          "bytesInOutput": 4306
+        "dist/js/index.js": {
+          "bytesInOutput": 3769
         },
         "_snowpack/pkg/d3-scale.js": {
-          "bytesInOutput": 10009
+          "bytesInOutput": 10057
         },
         "_snowpack/pkg/@sindresorhus/slugify.js": {
           "bytesInOutput": 14462
         },
-        "dist/js/index.js": {
-          "bytesInOutput": 3747
-        },
         "_snowpack/pkg/@reuters-graphics/graphics-atlas-client.js": {
-          "bytesInOutput": 212484
+          "bytesInOutput": 220028
         },
         "dist/demo/countries-110m.json.proxy.js": {
           "bytesInOutput": 105979
         },
         "dist/demo/Chart.svelte.js": {
-          "bytesInOutput": 3532
+          "bytesInOutput": 3535
         },
         "dist/demo/App/App.svelte.js": {
           "bytesInOutput": 900
@@ -571,7 +583,7 @@
           "bytesInOutput": 44
         }
       },
-      "bytes": 1621424
+      "bytes": 1595540
     },
     "../~~bundle~~/dist/demo/App/index.css": {
       "imports": [],

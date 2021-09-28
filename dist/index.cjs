@@ -1,12 +1,38 @@
-import { namespace, matcher, selector, selectorAll, selection, style, select } from 'd3-selection';
-import * as d3Geo from 'd3-geo';
-import { geoPath } from 'd3-geo';
-import { appendSelect } from 'd3-appendselect';
-import { extent } from 'd3-array';
-import { geoVoronoi } from 'd3-geo-voronoi';
-import { merge } from 'lodash-es';
-import { scaleLinear } from 'd3-scale';
-import slugify from '@sindresorhus/slugify';
+'use strict';
+
+var d3 = require('d3-selection');
+var d3Geo = require('d3-geo');
+var d3Appendselect = require('d3-appendselect');
+var d3Array = require('d3-array');
+var d3GeoVoronoi = require('d3-geo-voronoi');
+var lodashEs = require('lodash-es');
+var d3Scale = require('d3-scale');
+var slugify = require('@sindresorhus/slugify');
+
+function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
+
+function _interopNamespace(e) {
+  if (e && e.__esModule) return e;
+  var n = Object.create(null);
+  if (e) {
+    Object.keys(e).forEach(function (k) {
+      if (k !== 'default') {
+        var d = Object.getOwnPropertyDescriptor(e, k);
+        Object.defineProperty(n, k, d.get ? d : {
+          enumerable: true,
+          get: function () {
+            return e[k];
+          }
+        });
+      }
+    });
+  }
+  n['default'] = e;
+  return Object.freeze(n);
+}
+
+var d3Geo__namespace = /*#__PURE__*/_interopNamespace(d3Geo);
+var slugify__default = /*#__PURE__*/_interopDefaultLegacy(slugify);
 
 function _classCallCheck(instance, Constructor) {
   if (!(instance instanceof Constructor)) {
@@ -1186,7 +1212,7 @@ function attrFunctionNS(fullname, interpolate, value) {
 }
 
 function transition_attr(name, value) {
-  var fullname = namespace(name), i = fullname === "transform" ? interpolateTransformSvg : interpolate;
+  var fullname = d3.namespace(name), i = fullname === "transform" ? interpolateTransformSvg : interpolate;
   return this.attrTween(name, typeof value === "function"
       ? (fullname.local ? attrFunctionNS : attrFunction)(fullname, i, tweenValue(this, "attr." + name, value))
       : value == null ? (fullname.local ? attrRemoveNS : attrRemove)(fullname)
@@ -1232,7 +1258,7 @@ function transition_attrTween(name, value) {
   if (arguments.length < 2) return (key = this.tween(key)) && key._value;
   if (value == null) return this.tween(key, null);
   if (typeof value !== "function") throw new Error;
-  var fullname = namespace(name);
+  var fullname = d3.namespace(name);
   return this.tween(key, (fullname.local ? attrTweenNS : attrTween)(fullname, value));
 }
 
@@ -1309,7 +1335,7 @@ function transition_easeVarying(value) {
 }
 
 function transition_filter(match) {
-  if (typeof match !== "function") match = matcher(match);
+  if (typeof match !== "function") match = d3.matcher(match);
 
   for (var groups = this._groups, m = groups.length, subgroups = new Array(m), j = 0; j < m; ++j) {
     for (var group = groups[j], n = group.length, subgroup = subgroups[j] = [], node, i = 0; i < n; ++i) {
@@ -1387,7 +1413,7 @@ function transition_select(select) {
   var name = this._name,
       id = this._id;
 
-  if (typeof select !== "function") select = selector(select);
+  if (typeof select !== "function") select = d3.selector(select);
 
   for (var groups = this._groups, m = groups.length, subgroups = new Array(m), j = 0; j < m; ++j) {
     for (var group = groups[j], n = group.length, subgroup = subgroups[j] = new Array(n), node, subnode, i = 0; i < n; ++i) {
@@ -1406,7 +1432,7 @@ function transition_selectAll(select) {
   var name = this._name,
       id = this._id;
 
-  if (typeof select !== "function") select = selectorAll(select);
+  if (typeof select !== "function") select = d3.selectorAll(select);
 
   for (var groups = this._groups, m = groups.length, subgroups = [], parents = [], j = 0; j < m; ++j) {
     for (var group = groups[j], n = group.length, node, i = 0; i < n; ++i) {
@@ -1425,7 +1451,7 @@ function transition_selectAll(select) {
   return new Transition(subgroups, parents, name, id);
 }
 
-var Selection = selection.prototype.constructor;
+var Selection = d3.selection.prototype.constructor;
 
 function transition_selection() {
   return new Selection(this._groups, this._parents);
@@ -1436,8 +1462,8 @@ function styleNull(name, interpolate) {
       string10,
       interpolate0;
   return function() {
-    var string0 = style(this, name),
-        string1 = (this.style.removeProperty(name), style(this, name));
+    var string0 = d3.style(this, name),
+        string1 = (this.style.removeProperty(name), d3.style(this, name));
     return string0 === string1 ? null
         : string0 === string00 && string1 === string10 ? interpolate0
         : interpolate0 = interpolate(string00 = string0, string10 = string1);
@@ -1455,7 +1481,7 @@ function styleConstant(name, interpolate, value1) {
       string1 = value1 + "",
       interpolate0;
   return function() {
-    var string0 = style(this, name);
+    var string0 = d3.style(this, name);
     return string0 === string1 ? null
         : string0 === string00 ? interpolate0
         : interpolate0 = interpolate(string00 = string0, value1);
@@ -1467,10 +1493,10 @@ function styleFunction(name, interpolate, value) {
       string10,
       interpolate0;
   return function() {
-    var string0 = style(this, name),
+    var string0 = d3.style(this, name),
         value1 = value(this),
         string1 = value1 + "";
-    if (value1 == null) string1 = value1 = (this.style.removeProperty(name), style(this, name));
+    if (value1 == null) string1 = value1 = (this.style.removeProperty(name), d3.style(this, name));
     return string0 === string1 ? null
         : string0 === string00 && string1 === string10 ? interpolate0
         : (string10 = string1, interpolate0 = interpolate(string00 = string0, value1));
@@ -1638,7 +1664,7 @@ function newId() {
   return ++id;
 }
 
-var selection_prototype = selection.prototype;
+var selection_prototype = d3.selection.prototype;
 
 Transition.prototype = {
   constructor: Transition,
@@ -1715,8 +1741,8 @@ function selection_transition(name) {
   return new Transition(groups, this._parents, name, id);
 }
 
-selection.prototype.interrupt = selection_interrupt;
-selection.prototype.transition = selection_transition;
+d3.selection.prototype.interrupt = selection_interrupt;
+d3.selection.prototype.transition = selection_transition;
 
 function identity$1(x) {
   return x;
@@ -1836,7 +1862,7 @@ var makeClipBox = (function (opts) {
   };
 });
 
-selection.prototype.appendSelect = appendSelect;
+d3.selection.prototype.appendSelect = d3Appendselect.appendSelect;
 /**
  * Write your chart as a class with a single draw method that draws
  * your chart! This component inherits from a base class you can
@@ -1905,7 +1931,7 @@ var SpikeMap = /*#__PURE__*/function () {
     key: "selection",
     value: function selection(selector) {
       if (!selector) return this._selection;
-      this._selection = select(selector);
+      this._selection = d3.select(selector);
       return this;
     }
   }, {
@@ -1934,7 +1960,7 @@ var SpikeMap = /*#__PURE__*/function () {
     key: "props",
     value: function props(newProps) {
       if (!newProps) return this._props || this.defaultProps;
-      this._props = merge(this._props || this.defaultProps, newProps);
+      this._props = lodashEs.merge(this._props || this.defaultProps, newProps);
       return this;
     }
     /**
@@ -1963,9 +1989,9 @@ var SpikeMap = /*#__PURE__*/function () {
 
       var width = containerWidth - margin.left - margin.right;
       var height = containerWidth * props.aspectHeight - margin.top - margin.bottom;
-      var yScale = scaleLinear().domain(extent(data, props.spikes.getValue)).range(props.spikes.range);
-      if (!d3Geo[props.projection]) props.projection = 'geoNaturalEarth1';
-      var projection = d3Geo[props.projection]();
+      var yScale = d3Scale.scaleLinear().domain(d3Array.extent(data, props.spikes.getValue)).range(props.spikes.range);
+      if (!d3Geo__namespace[props.projection]) props.projection = 'geoNaturalEarth1';
+      var projection = d3Geo__namespace[props.projection]();
       var geoFeatures = feature(geoData, props.geometries.getObjects(geoData.objects));
 
       if (props.geometries.filter) {
@@ -1978,7 +2004,7 @@ var SpikeMap = /*#__PURE__*/function () {
         projection.fitSize([width, height], geoFeatures);
       }
 
-      var path = geoPath().projection(projection);
+      var path = d3Geo.geoPath().projection(projection);
       var centroids = geoFeatures.features.map(function (d) {
         return {
           id: props.geometries.getId(d),
@@ -2005,7 +2031,7 @@ var SpikeMap = /*#__PURE__*/function () {
       var transition = plot.transition().duration(500);
       var geometries = plot.appendSelect('g.geometries');
       geometries.selectAll('path').data(geoFeatures.features).join('path').attr('id', function (d) {
-        return "geometry-".concat(slugify(props.geometries.getId(d)));
+        return "geometry-".concat(slugify__default['default'](props.geometries.getId(d)));
       }).attr('class', function (d) {
         return props.geometries.addClass(d);
       }).attr('d', path).style('fill', props.geometries.fill).style('stroke', props.geometries.stroke).style('stroke-width', props.geometries.strokeWidth);
@@ -2017,7 +2043,7 @@ var SpikeMap = /*#__PURE__*/function () {
         });
       })).join(function (enter) {
         return enter.append('path').attr('id', function (d) {
-          return "spike-".concat(slugify(props.spikes.getFeatureId(d)));
+          return "spike-".concat(slugify__default['default'](props.spikes.getFeatureId(d)));
         }).attr('class', function (d) {
           return props.spikes.addClass(d);
         }).attr('d', function (d) {
@@ -2053,10 +2079,10 @@ var SpikeMap = /*#__PURE__*/function () {
         return exit.remove();
       }).style('pointer-events', 'none').style('fill', props.spikes.fill).style('stroke', props.spikes.stroke).style('stroke-width', props.spikes.strokeWidth);
       if (!props.voronoi.draw) return this;
-      plot.appendSelect('g.voronoi').style('pointer-events', 'all').selectAll('path').data(geoVoronoi().polygons(voronoiCentroids).features).join('path').style('fill', 'transparent').attr('d', path).on('mouseover', function (event, voronoi) {
+      plot.appendSelect('g.voronoi').style('pointer-events', 'all').selectAll('path').data(d3GeoVoronoi.geoVoronoi().polygons(voronoiCentroids).features).join('path').style('fill', 'transparent').attr('d', path).on('mouseover', function (event, voronoi) {
         var datum = voronoi.properties.site.properties.datum;
-        var spike = spikes.select("#spike-".concat(slugify(props.spikes.getFeatureId(datum))));
-        var geometry = geometries.select("#geometry-".concat(slugify(props.spikes.getFeatureId(datum))));
+        var spike = spikes.select("#spike-".concat(slugify__default['default'](props.spikes.getFeatureId(datum))));
+        var geometry = geometries.select("#geometry-".concat(slugify__default['default'](props.spikes.getFeatureId(datum))));
         geometry.raise();
         props.voronoi.mouseover(event, datum, {
           selected: {
@@ -2080,4 +2106,4 @@ var SpikeMap = /*#__PURE__*/function () {
   return SpikeMap;
 }();
 
-export default SpikeMap;
+module.exports = SpikeMap;
