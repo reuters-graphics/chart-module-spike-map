@@ -8,7 +8,7 @@ import { appendSelect } from 'd3-appendselect';
 import { extent } from 'd3-array';
 import { geoVoronoi } from 'd3-geo-voronoi';
 import makeClipBox from './utils/makeClipBox';
-import merge from 'lodash/merge';
+import { merge } from 'lodash-es';
 import { scaleLinear } from 'd3-scale';
 import slugify from '@sindresorhus/slugify';
 
@@ -140,9 +140,9 @@ class SpikeMap {
 
     const centroids = geoFeatures.features.map((d) => ({
       id: props.geometries.getId(d),
-      centroid: props.geometries.getCentroid
-        ? props.geometries.getCentroid(d)
-        : projection.invert(path.centroid(d)),
+      centroid: props.geometries.getCentroid ?
+          props.geometries.getCentroid(d) :
+        projection.invert(path.centroid(d)),
     }));
 
     const voronoiCentroids = centroids.map(({ id, centroid }) => ({
@@ -191,7 +191,7 @@ class SpikeMap {
             .append('path')
             .attr('id', (d) => `spike-${slugify(props.spikes.getFeatureId(d))}`)
             .attr('class', (d) => props.spikes.addClass(d))
-            .attr('d', function (d) {
+            .attr('d', function(d) {
               const featureId = props.spikes.getFeatureId(d);
               const { centroid } = centroids.find((c) => c.id === featureId);
               const c = projection(centroid);
@@ -203,7 +203,7 @@ class SpikeMap {
             }),
         (update) =>
           update.call((update) =>
-            update.transition(transition).attr('d', function (d) {
+            update.transition(transition).attr('d', function(d) {
               const featureId = props.spikes.getFeatureId(d);
               const { centroid } = centroids.find((c) => c.id === featureId);
               const c = projection(centroid);

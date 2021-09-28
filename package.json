@@ -1,18 +1,28 @@
 {
   "name": "@reuters-graphics/chart-module-spike-map",
   "version": "0.0.1",
-  "main": "dist/index.js",
-  "module": "src/js/index.js",
+  "type": "module",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
   "license": "MIT",
   "private": false,
   "repository": "github:reuters-graphics/chart-module-spike-map",
   "homepage": "https://reuters-graphics.github.io/chart-module-spike-map/",
   "files": [
+    "dist/**/*",
     "src/js/**/*",
     "src/scss/**/*",
     "!src/scss/demo.scss",
     "badge.svg"
   ],
+  "engines": {
+    "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
+  },
   "scripts": {
     "chart:dev": "snowpack dev",
     "chart:build-docs": "snowpack build",
@@ -24,15 +34,15 @@
   },
   "dependencies": {
     "@sindresorhus/slugify": "^1.1.0",
-    "d3": "^6.2.0",
-    "d3-appendselect": "^0.1.0",
-    "d3-array": "^2.10.0",
-    "d3-axis": "^2.0.0",
-    "d3-geo": "^2.0.1",
-    "d3-geo-voronoi": "^1.6.0",
-    "d3-scale": "^3.2.3",
-    "d3-selection": "^2.0.0",
-    "lodash": "^4.17.20",
+    "d3": "^7.0.0",
+    "d3-appendselect": "^2.0.0",
+    "d3-array": "^3.0.0",
+    "d3-axis": "^3.0.0",
+    "d3-geo": "^3.0.0",
+    "d3-geo-voronoi": "^2.0.0",
+    "d3-scale": "^4.0.0",
+    "d3-selection": "^3.0.0",
+    "lodash-es": "^4.17.20",
     "topojson": "^3.0.2"
   },
   "devDependencies": {
