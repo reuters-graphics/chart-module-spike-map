@@ -2,12 +2,10 @@
   "name": "@reuters-graphics/chart-module-spike-map",
   "version": "0.0.1",
   "type": "module",
+  "module": "dist/index.js",
+  "main": "dist/index.js",
   "exports": {
-    "./package.json": "./package.json",
-    ".": {
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
-    }
+    "default": "./dist/index.js"
   },
   "license": "MIT",
   "private": false,
@@ -42,6 +40,7 @@
     "d3-geo-voronoi": "^2.0.0",
     "d3-scale": "^4.0.0",
     "d3-selection": "^3.0.0",
+    "d3-transition": "^3.0.1",
     "lodash-es": "^4.17.20",
     "topojson": "^3.0.2"
   },
